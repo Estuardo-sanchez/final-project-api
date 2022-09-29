@@ -1,0 +1,4 @@
+module.exports = `
+INSERT INTO barbershops (name, street, city, province, post_code, open_hours, cover_photo_url, lattitude, longitude) VALUES ("Ace Barbers", "351 Caledon Avenue", "Hamilton", "Ontario", "L9C 3A5", "10:00AM-6:00PM", "https://www.pexels.com/photo/men-having-their-haircut-1813272/", 43.22253103244279, -79.88574371583258)
+INSERT INTO barbershops (name, street, city, province, post_code, open_hours, cover_photo_url, lattitude, longitude) VALUES ("LA Barbershop", "20 Rosedene Avenue", "Hamilton", "Ontario", "L9A 1K4", "12:00PM-8:00PM", "https://www.pexels.com/photo/salon-chair-beside-oil-heater-in-front-of-mirror-inside-room-1895701/", 43.243599148277106, -79.87500595990427)
+`
