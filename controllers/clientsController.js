@@ -1,4 +1,4 @@
-const { FruitsModel } = require('../models');
+const { clientsModel } = require('../models');
 
 const create = (req, res) => {
   const { userId } = req.session;
@@ -10,54 +10,54 @@ const create = (req, res) => {
   if (!name || !color || !emoji) {
     return res
       .status(400)
-      .send({ message: 'Provide name, color and emoji to create a fruit' });
+      .send({ message: 'Provide all details to create a account' });
   }
 
-  FruitsModel.create(userId, name, color, emoji)
+  clientsModel.create(userId, name, color, emoji)
     .then(fruit => {
-      res.status(201).send({ message: 'Created!', fruit });
+      res.status(201).send({ message: 'Created!', clients });
     })
     .catch(error => {
       console.log(error.message);
       res
         .status(500)
-        .send({ message: 'Error creating fruit', error: error.message });
+        .send({ message: 'Error creating account', error: error.message });
     });
 };
 
 const getAll = (req, res) => {
-  FruitsModel.getAll()
+  clientsModel.getAll()
     .then(fruits => {
       if (fruits.length === 0) {
-        return res.status(200).send({ message: 'No fruits available!' });
+        return res.status(200).send({ message: 'No account available!' });
       }
 
-      res.status(200).send({ message: 'List of all fruits!', fruits });
+      res.status(200).send({ message: 'List of all clients!', clients });
     })
     .catch(error => {
       console.log(error.message);
       res
         .status(500)
-        .send({ message: 'Error reading fruits', error: error.message });
+        .send({ message: 'Error reading clients', error: error.message });
     });
 };
 
 const getById = (req, res) => {
   const { id } = req.params;
 
-  FruitsModel.getById(id)
+  clientsModel.getById(id)
     .then(fruit => {
       if (!fruit) {
-        return res.status(404).send({ message: 'Fruit not found!' });
+        return res.status(404).send({ message: 'account not found!' });
       }
 
-      res.status(200).send({ message: 'Here is your fruit!', fruit });
+      res.status(200).send({ message: 'Here is your account!', clients });
     })
     .catch(error => {
       console.log(error.message);
       res
         .status(500)
-        .send({ message: 'Error reading fruit', error: error.message });
+        .send({ message: 'Error reading account', error: error.message });
     });
 };
 
@@ -71,24 +71,24 @@ const update = (req, res) => {
   if (!name || !color || !emoji) {
     return res
       .status(400)
-      .send({ message: 'Provide name, color and emoji to update a fruit' });
+      .send({ message: 'Provide name, color and emoji to update account' });
   }
 
   const { id } = req.params;
 
-  FruitsModel.update(name, color, emoji, id)
+  clientsModel.update(name, color, emoji, id)
     .then(fruit => {
       if (!fruit) {
-        return res.status(404).send({ message: 'Fruit not found!' });
+        return res.status(404).send({ message: 'Account not found!' });
       }
 
-      res.status(201).send({ message: 'Updated!', fruit });
+      res.status(201).send({ message: 'Updated!', clients });
     })
     .catch(error => {
       console.log(error.message);
       res
         .status(500)
-        .send({ message: 'Error updating fruit', error: error.message });
+        .send({ message: 'Error updating account', error: error.message });
     });
 };
 
@@ -100,7 +100,7 @@ const remove = (req, res) => {
 
   const { id } = req.params;
 
-  FruitsModel.remove(id)
+  clientsModel.remove(id)
     .then(() => {
       res.status(204).send();
     })
@@ -108,7 +108,7 @@ const remove = (req, res) => {
       console.log(error.message);
       res
         .status(500)
-        .send({ message: 'Error deleting fruit', error: error.message });
+        .send({ message: 'Error deleting account', error: error.message });
     });
 };
 
