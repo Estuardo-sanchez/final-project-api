@@ -14,7 +14,7 @@ const create = (req, res) => {
   }
 
   clientsModel.create(userId, name, color, emoji)
-    .then(fruit => {
+    .then(clients => {
       res.status(201).send({ message: 'Created!', clients });
     })
     .catch(error => {
@@ -27,8 +27,8 @@ const create = (req, res) => {
 
 const getAll = (req, res) => {
   clientsModel.getAll()
-    .then(fruits => {
-      if (fruits.length === 0) {
+    .then(clients => {
+      if (clients.length === 0) {
         return res.status(200).send({ message: 'No account available!' });
       }
 
@@ -46,8 +46,8 @@ const getById = (req, res) => {
   const { id } = req.params;
 
   clientsModel.getById(id)
-    .then(fruit => {
-      if (!fruit) {
+    .then(clients => {
+      if (!clients) {
         return res.status(404).send({ message: 'account not found!' });
       }
 
@@ -77,8 +77,8 @@ const update = (req, res) => {
   const { id } = req.params;
 
   clientsModel.update(name, color, emoji, id)
-    .then(fruit => {
-      if (!fruit) {
+    .then(clients => {
+      if (!clients) {
         return res.status(404).send({ message: 'Account not found!' });
       }
 

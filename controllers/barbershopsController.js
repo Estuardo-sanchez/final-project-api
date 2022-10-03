@@ -14,7 +14,7 @@ const create = (req, res) => {
   }
 
   barbershopsModel.create(userId, name, color, emoji)
-    .then(fruit => {
+    .then(barbershops => {
       res.status(201).send({ message: 'Created!', barbershops });
     })
     .catch(error => {
@@ -27,8 +27,8 @@ const create = (req, res) => {
 
 const getAll = (req, res) => {
   barbershopsModel.getAll()
-    .then(fruits => {
-      if (fruits.length === 0) {
+    .then(barbershops => {
+      if (barbershops.length === 0) {
         return res.status(200).send({ message: 'No barbershops available!' });
       }
 
@@ -46,8 +46,8 @@ const getById = (req, res) => {
   const { id } = req.params;
 
   barbershopsModel.getById(id)
-    .then(fruit => {
-      if (!fruit) {
+    .then(barbershops => {
+      if (!barbershops) {
         return res.status(404).send({ message: 'Barbershop not found!' });
       }
 
@@ -77,8 +77,8 @@ const update = (req, res) => {
   const { id } = req.params;
 
   barbershopsModel.update(name, color, emoji, id)
-    .then(fruit => {
-      if (!fruit) {
+    .then(barbershops => {
+      if (!barbershops) {
         return res.status(404).send({ message: 'Barbershop not found!' });
       }
 

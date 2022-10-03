@@ -10,35 +10,35 @@ const create = (req, res) => {
   if (!name || !color || !emoji) {
     return res
       .status(400)
-      .send({ message: 'Provide all details to create a barbershop' });
+      .send({ message: 'Provide all details to create a appointment' });
   }
 
   appointmentModel.create(userId, name, color, emoji)
-    .then(fruit => {
-      res.status(201).send({ message: 'Created!', barbershop });
+    .then(appointments => {
+      res.status(201).send({ message: 'Created!', appointments });
     })
     .catch(error => {
       console.log(error.message);
       res
         .status(500)
-        .send({ message: 'Error creating barbershop', error: error.message });
+        .send({ message: 'Error creating appointment', error: error.message });
     });
 };
 
 const getAll = (req, res) => {
   appointmentModel.getAll()
-    .then(fruits => {
-      if (fruits.length === 0) {
-        return res.status(200).send({ message: 'No barbershops available!' });
+    .then(appointments => {
+      if (appointments.length === 0) {
+        return res.status(200).send({ message: 'No appointments available!' });
       }
 
-      res.status(200).send({ message: 'List of all barbershops!', barbershop });
+      res.status(200).send({ message: 'List of all appointments!', appointments });
     })
     .catch(error => {
       console.log(error.message);
       res
         .status(500)
-        .send({ message: 'Error reading barbershops', error: error.message });
+        .send({ message: 'Error reading appointments', error: error.message });
     });
 };
 
@@ -46,18 +46,18 @@ const getById = (req, res) => {
   const { id } = req.params;
 
   appointmentModel.getById(id)
-    .then(fruit => {
-      if (!fruit) {
-        return res.status(404).send({ message: 'Barbershop not found!' });
+    .then(appointments => {
+      if (!appointments) {
+        return res.status(404).send({ message: 'appointment not found!' });
       }
 
-      res.status(200).send({ message: 'Here is your barbershop!', barbershop });
+      res.status(200).send({ message: 'Here is your appointment!', appointments });
     })
     .catch(error => {
       console.log(error.message);
       res
         .status(500)
-        .send({ message: 'Error reading barbershop', error: error.message });
+        .send({ message: 'Error reading appointment', error: error.message });
     });
 };
 
@@ -77,18 +77,18 @@ const update = (req, res) => {
   const { id } = req.params;
 
   appointmentModel.update(name, color, emoji, id)
-    .then(fruit => {
-      if (!fruit) {
+    .then(appointments => {
+      if (!appointments) {
         return res.status(404).send({ message: 'Appointment not found!' });
       }
 
-      res.status(201).send({ message: 'Updated!', appointment });
+      res.status(201).send({ message: 'Updated!', appointments });
     })
     .catch(error => {
       console.log(error.message);
       res
         .status(500)
-        .send({ message: 'Error updating appointment', error: error.message });
+        .send({ message: 'Error updating appointments', error: error.message });
     });
 };
 
@@ -108,7 +108,7 @@ const remove = (req, res) => {
       console.log(error.message);
       res
         .status(500)
-        .send({ message: 'Error deleting appointment', error: error.message });
+        .send({ message: 'Error deleting appointments', error: error.message });
     });
 };
 

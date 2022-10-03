@@ -14,7 +14,7 @@ const create = (req, res) => {
   }
 
   appointment_reviewsModel.create(userId, name, color, emoji)
-    .then(fruit => {
+    .then(appointment_reviews => {
       res.status(201).send({ message: 'Created!', appointment_reviews });
     })
     .catch(error => {
@@ -27,8 +27,8 @@ const create = (req, res) => {
 
 const getAll = (req, res) => {
   appointment_reviewsModel.getAll()
-    .then(fruits => {
-      if (fruits.length === 0) {
+    .then(appointment_reviews => {
+      if (appointment_reviews.length === 0) {
         return res.status(200).send({ message: 'No reviews available!' });
       }
 
@@ -46,8 +46,8 @@ const getById = (req, res) => {
   const { id } = req.params;
 
   appointment_reviewsModel.getById(id)
-    .then(fruit => {
-      if (!fruit) {
+    .then(appointment_reviews => {
+      if (!appointment_reviews) {
         return res.status(404).send({ message: 'review not found!' });
       }
 
@@ -77,8 +77,8 @@ const update = (req, res) => {
   const { id } = req.params;
 
   appointment_reviewsModel.update(name, color, emoji, id)
-    .then(fruit => {
-      if (!fruit) {
+    .then(appointment_reviews => {
+      if (!appointment_reviews) {
         return res.status(404).send({ message: 'review not found!' });
       }
 

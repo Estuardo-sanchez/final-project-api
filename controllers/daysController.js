@@ -1,4 +1,4 @@
-const { daysModel } = require('../models');
+const { DaysModel } = require('../models');
 
 const create = (req, res) => {
   const { userId } = req.session;
@@ -13,8 +13,8 @@ const create = (req, res) => {
       .send({ message: 'Provide all details to create a day' });
   }
 
-  daysModel.create(userId, name, color, emoji)
-    .then(fruit => {
+  DaysModel.create(userId, name, color, emoji)
+    .then(days => {
       res.status(201).send({ message: 'Created!', days });
     })
     .catch(error => {
@@ -26,9 +26,9 @@ const create = (req, res) => {
 };
 
 const getAll = (req, res) => {
-  daysModel.getAll()
-    .then(fruits => {
-      if (fruits.length === 0) {
+  DaysModel.getAll()
+    .then(days => {
+      if (days.length === 0) {
         return res.status(200).send({ message: 'No day available!' });
       }
 
@@ -45,9 +45,9 @@ const getAll = (req, res) => {
 const getById = (req, res) => {
   const { id } = req.params;
 
-  daysModel.getById(id)
-    .then(fruit => {
-      if (!fruit) {
+  DaysModel.getById(id)
+    .then(days => {
+      if (!days) {
         return res.status(404).send({ message: 'day not found!' });
       }
 
@@ -76,9 +76,9 @@ const update = (req, res) => {
 
   const { id } = req.params;
 
-  daysModel.update(name, color, emoji, id)
-    .then(fruit => {
-      if (!fruit) {
+  DaysModel.update(name, color, emoji, id)
+    .then(days => {
+      if (!days) {
         return res.status(404).send({ message: 'day not found!' });
       }
 
@@ -100,7 +100,7 @@ const remove = (req, res) => {
 
   const { id } = req.params;
 
-  daysModel.remove(id)
+  DaysModel.remove(id)
     .then(() => {
       res.status(204).send();
     })

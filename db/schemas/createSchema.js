@@ -22,8 +22,8 @@ CREATE TABLE clients (
     post_code VARCHAR(255) NOT NULL,
     open_hours VARCHAR(255) NOT NULL,
     cover_photo_url VARCHAR(255) NOT NULL,
-    lattitude INTEGER NOT NULL,
-    longitude INTEGER NOT NULL
+    lattitude DECIMAL(20,18) NOT NULL,
+    longitude DECIMAL(20,18) NOT NULL
   );
 
   CREATE TABLE days (

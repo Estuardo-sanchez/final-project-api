@@ -4,7 +4,7 @@ const appointment_reviewsModel = require('./appointment_reviewsModel');
 const appointmentModel = require('./appointmentModel');
 const barbershopsModel = require('./barbershopsModel');
 const clientsModel = require('./clientsModel');
-const daysModel = require('./daysModel');
+const DaysModel = require('./DaysModel');
 
 module.exports = {
   AuthModel,
@@ -13,5 +13,5 @@ module.exports = {
   appointmentModel,
   barbershopsModel,
   clientsModel,
-  daysModel
+  DaysModel
 };
