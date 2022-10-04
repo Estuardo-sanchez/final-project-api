@@ -1,24 +1,24 @@
 const { barbershopsModel } = require('../models');
 
 const create = (req, res) => {
-  const { userId } = req.session;
-  if (!userId) {
-    return res.status(401).send({ message: 'User is not logged in' });
-  }
+  // const { userId } = req.session;
+  // if (!userId) {
+  //   return res.status(401).send({ message: 'User is not logged in' });
+  // }
 
-  const { name, color, emoji } = req.body;
-  if (!name || !color || !emoji) {
+  const { name, street, city, province, post_code, open_hours, cover_photo_url, lattitude, longitude } = req.body;
+  if (!name || !street || !city || !province || !post_code || !open_hours || !cover_photo_url || !lattitude || !longitude) {
     return res
       .status(400)
       .send({ message: 'Provide all details to create a barbershop' });
   }
 
-  barbershopsModel.create(userId, name, color, emoji)
+  barbershopsModel.create(name, street, city, province, post_code, open_hours, cover_photo_url, lattitude, longitude)
     .then(barbershops => {
       res.status(201).send({ message: 'Created!', barbershops });
     })
     .catch(error => {
-      console.log(error.message);
+      console.log('ERROR', error.message);
       res
         .status(500)
         .send({ message: 'Error creating barbershop', error: error.message });

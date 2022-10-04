@@ -3,7 +3,7 @@ const { db } = require('../db');
 const create = (name, street, city, province, post_code, open_hours, cover_photo_url, lattitude, longitude) => {
   return db
     .query(
-      'INSERT INTO barbershops (userId, name, street, city, province, post_code, open_hours, cover_photo_url, lattitude, longitude) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
+      'INSERT INTO barbershops (name, street, city, province, post_code, open_hours, cover_photo_url, lattitude, longitude) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
       [name, street, city, province, post_code, open_hours, cover_photo_url, lattitude, longitude]
     )
     .then(data => data.rows[0])
