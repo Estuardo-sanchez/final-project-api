@@ -1,21 +1,22 @@
 const { appointmentModel } = require('../models');
 
 const create = (req, res) => {
-  const { userId } = req.session;
-  if (!userId) {
-    return res.status(401).send({ message: 'User is not logged in' });
-  }
+  // const { userId } = req.session;
+  // if (!userId) {
+  //   return res.status(401).send({ message: 'User is not logged in' });
+  // }
 
-  const { name, color, emoji } = req.body;
-  if (!name || !color || !emoji) {
+  console.log(req.body)
+  const { name, last_name, email, phone, start_time, date, barbershop_id } = req.body;
+  if (!name || !last_name || !email || !phone || !start_time || !date || !barbershop_id) {
     return res
       .status(400)
       .send({ message: 'Provide all details to create a appointment' });
   }
 
-  appointmentModel.create(userId, name, color, emoji)
-    .then(appointments => {
-      res.status(201).send({ message: 'Created!', appointments });
+  appointmentModel.create(name, last_name, email, phone, start_time, date, barbershop_id)
+    .then(appointment => {
+      res.status(201).send({ message: 'Created!', appointment });
     })
     .catch(error => {
       console.log(error.message);
@@ -46,12 +47,12 @@ const getById = (req, res) => {
   const { id } = req.params;
 
   appointmentModel.getById(id)
-    .then(appointments => {
-      if (!appointments) {
+    .then(appointment => {
+      if (!appointment) {
         return res.status(404).send({ message: 'appointment not found!' });
       }
 
-      res.status(200).send({ message: 'Here is your appointment!', appointments });
+      res.status(200).send({ message: 'Here is your appointment!', appointment });
     })
     .catch(error => {
       console.log(error.message);

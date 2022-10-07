@@ -1,10 +1,10 @@
 const { db } = require('../db');
 
-const create = (start_time, date, client_id, barbershop_id) => {
+const create = (name, last_name, email, phone, start_time, date, barbershop_id) => {
   return db
     .query(
-      'INSERT INTO appointments (start_time, date, client_id, barbershop_id) VALUES ($1, $2, $3, $4) RETURNING *',
-      [start_time, date, client_id, barbershop_id]
+      'INSERT INTO appointments (name, last_name, email, phone, start_time, date, barbershop_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+      [name, last_name, email, phone, start_time, date, barbershop_id]
     )
     .then(data => data.rows[0])
     .catch(err => console.error(err.stack));
@@ -24,11 +24,11 @@ const getById = id => {
     .catch(err => console.error(err.stack));
 };
 
-const update = (start_time, date, client_id, barbershop_id, id) => {
+const update = (name, last_name, email, phone, start_time, date, barbershop_id, id) => {
   return db
     .query(
       'UPDATE appointments SET start_time = $1, date = $2, client_id = $3, barbershop_id = $4 WHERE id = $5 RETURNING *',
-      [start_time, date, client_id, barbershop_id, id]
+      [name, last_name, email, phone, start_time, date, barbershop_id, id]
     )
     .then(data => data.rows[0])
     .catch(err => console.error(err.stack));

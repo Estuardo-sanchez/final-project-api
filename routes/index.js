@@ -8,6 +8,7 @@ const appointmentRoutes = require('./appointmentRoutes');
 const barbershopsRoutes = require('./barbershopsRoutes');
 const clientsRoutes = require('./clientsRoutes');
 const DaysRoutes = require('./DaysRoutes');
+const usersRoutes = require('./usersRoutes');
 
 const router = express.Router();
 
@@ -34,6 +35,9 @@ router.use('/api/clients', clientsRoutes);
 
 // CRUD REST API FRUITS ROUTES
 router.use('/api/days', DaysRoutes);
+
+// CRUD REST API FRUITS ROUTES
+router.use('/api/users', usersRoutes);
 
 // Catch all route
 router.use((req, res) => {

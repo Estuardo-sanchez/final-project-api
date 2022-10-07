@@ -6,6 +6,7 @@ const appointmentController = require('./appointmentController');
 const barbershopsController = require('./barbershopsController');
 const clientsController = require('./clientsController');
 const DaysController = require('./DaysController');
+const usersController = require('./usersController');
 
 module.exports = {
   IndexController,
@@ -15,5 +16,6 @@ module.exports = {
   appointment_reviewsController,
   barbershopsController,
   clientsController,
-  DaysController
+  DaysController,
+  usersController
 };

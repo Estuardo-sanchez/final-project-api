@@ -5,6 +5,7 @@ const appointmentModel = require('./appointmentModel');
 const barbershopsModel = require('./barbershopsModel');
 const clientsModel = require('./clientsModel');
 const DaysModel = require('./DaysModel');
+const usersModel = require('./usersModel');
 
 module.exports = {
   AuthModel,
@@ -13,5 +14,6 @@ module.exports = {
   appointmentModel,
   barbershopsModel,
   clientsModel,
-  DaysModel
+  DaysModel,
+  usersModel
 };
