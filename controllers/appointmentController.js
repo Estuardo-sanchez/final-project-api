@@ -27,7 +27,12 @@ const create = (req, res) => {
 };
 
 const getAll = (req, res) => {
-  appointmentModel.getAll()
+  let dbQuery = appointmentModel.getAll();
+  const {barbershop_id} = req.query;
+  if (barbershop_id) {
+    dbQuery = appointmentModel.getAllByBarbershopId(barbershop_id);
+  }
+  dbQuery
     .then(appointments => {
       if (appointments.length === 0) {
         return res.status(200).send({ message: 'No appointments available!' });

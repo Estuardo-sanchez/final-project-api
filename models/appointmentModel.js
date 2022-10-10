@@ -17,6 +17,13 @@ const getAll = () => {
     .catch(err => console.error(err.stack));
 };
 
+const getAllByBarbershopId = barbershop_id => {
+  return db
+    .query('SELECT * FROM appointments WHERE barbershop_id = $1', [barbershop_id])
+    .then(data => data.rows)
+    .catch(err => console.error(err.stack));
+};
+
 const getById = id => {
   return db
     .query('SELECT * FROM appointments WHERE id = $1', [id])
@@ -41,4 +48,4 @@ const remove = id => {
     .catch(err => console.error(err.stack));
 };
 
-module.exports = { create, getAll, getById, update, remove };
+module.exports = { create, getAll, getAllByBarbershopId, getById, update, remove };
